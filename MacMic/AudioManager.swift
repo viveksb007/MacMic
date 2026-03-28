@@ -31,6 +31,18 @@ final class AudioManager: ObservableObject {
         checkMicPermission()
     }
 
+    deinit {
+        levelTimer?.invalidate()
+        if let au = audioUnit {
+            AudioOutputUnitStop(au)
+            AudioUnitUninitialize(au)
+            AudioComponentInstanceDispose(au)
+        }
+        if aggregateDeviceID != 0 {
+            AudioHardwareDestroyAggregateDevice(aggregateDeviceID)
+        }
+    }
+
     // MARK: - Microphone Permission
 
     func checkMicPermission() {
