@@ -7,8 +7,12 @@ import Foundation
 final class AudioManager: ObservableObject {
     @Published var inputDevices: [AudioDevice] = []
     @Published var outputDevices: [AudioDevice] = []
-    @Published var selectedInputID: AudioDeviceID?
-    @Published var selectedOutputID: AudioDeviceID?
+    @Published var selectedInputID: AudioDeviceID? {
+        didSet { saveSelectedDeviceUIDs() }
+    }
+    @Published var selectedOutputID: AudioDeviceID? {
+        didSet { saveSelectedDeviceUIDs() }
+    }
     @Published var isStreaming = false
     @Published var errorMessage: String?
     @Published var inputLevel: Float = 0
@@ -25,8 +29,13 @@ final class AudioManager: ObservableObject {
     /// Written on the audio thread, read by the level timer
     nonisolated(unsafe) fileprivate var _currentLevel: Float = 0
 
+    private static let inputUIDKey = "selectedInputUID"
+    private static let outputUIDKey = "selectedOutputUID"
+    private var isRestoringDefaults = false
+
     init() {
         refreshDevices()
+        restoreSelectedDeviceUIDs()
         observeDeviceChanges()
         checkMicPermission()
     }
@@ -231,6 +240,27 @@ final class AudioManager: ObservableObject {
         isStreaming = false
         inputLevel = 0
         statusInfo = ""
+    }
+
+    // MARK: - Device Persistence
+
+    private func saveSelectedDeviceUIDs() {
+        guard !isRestoringDefaults else { return }
+        let inputUID = inputDevices.first(where: { $0.id == selectedInputID })?.uid
+        let outputUID = outputDevices.first(where: { $0.id == selectedOutputID })?.uid
+        UserDefaults.standard.set(inputUID, forKey: Self.inputUIDKey)
+        UserDefaults.standard.set(outputUID, forKey: Self.outputUIDKey)
+    }
+
+    private func restoreSelectedDeviceUIDs() {
+        isRestoringDefaults = true
+        if let uid = UserDefaults.standard.string(forKey: Self.inputUIDKey) {
+            selectedInputID = inputDevices.first(where: { $0.uid == uid })?.id
+        }
+        if let uid = UserDefaults.standard.string(forKey: Self.outputUIDKey) {
+            selectedOutputID = outputDevices.first(where: { $0.uid == uid })?.id
+        }
+        isRestoringDefaults = false
     }
 
     // MARK: - Internals
