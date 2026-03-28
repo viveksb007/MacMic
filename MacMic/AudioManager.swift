@@ -73,7 +73,7 @@ final class AudioManager: ObservableObject {
 
     // MARK: - Streaming
 
-    func startStreaming() {
+    func startStreaming() async {
         guard micPermissionGranted else {
             checkMicPermission()
             errorMessage = "Microphone access is required."
@@ -99,7 +99,7 @@ final class AudioManager: ObservableObject {
             self.aggregateDeviceID = aggID
 
             // Give the aggregate device time to initialize its IO threads
-            Thread.sleep(forTimeInterval: 0.1)
+            try await Task.sleep(nanoseconds: 100_000_000)
 
             // --- 2. Create a HAL Output audio unit ---
             var desc = AudioComponentDescription(

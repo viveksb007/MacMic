@@ -109,7 +109,7 @@ struct ContentView: View {
                 if audioManager.isStreaming {
                     audioManager.stopStreaming()
                 } else {
-                    audioManager.startStreaming()
+                    Task { await audioManager.startStreaming() }
                 }
             } label: {
                 HStack(spacing: 8) {
