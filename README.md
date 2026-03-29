@@ -16,7 +16,16 @@ A macOS menu bar app that streams audio in real-time from any microphone to any 
 
 MacMic creates a private [aggregate device](https://developer.apple.com/documentation/coreaudio/using-voice-processing) combining the selected input and output devices, then routes audio through a HAL Output audio unit with a render callback. This is the same approach used by professional audio software to handle cross-device routing on macOS.
 
-## Build
+## Install
+
+### Homebrew
+
+```bash
+brew tap viveksb007/tap
+brew install --cask macmic
+```
+
+### Build from source
 
 Requires Xcode 16+ and [XcodeGen](https://github.com/yonaskolb/XcodeGen).
 
