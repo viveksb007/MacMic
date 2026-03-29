@@ -4,6 +4,20 @@ A macOS menu bar app that streams audio in real-time from any microphone to any 
 
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-blue) ![Swift](https://img.shields.io/badge/Swift-5.9-orange)
 
+## Screenshots
+
+<p align="center">
+  <img src="assets/normal_state.png" alt="Idle" width="300">
+  &nbsp;&nbsp;
+  <img src="assets/running_state.png" alt="Streaming" width="300">
+</p>
+
+### Demo
+
+<p align="center">
+  <video src="assets/demo_trimmed.mov" width="340" autoplay loop muted></video>
+</p>
+
 ## Features
 
 - **Device selection** — Pick any available microphone and speaker independently
