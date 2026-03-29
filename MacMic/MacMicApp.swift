@@ -9,7 +9,7 @@ struct MacMicApp: App {
             ContentView()
                 .environmentObject(audioManager)
         } label: {
-            Image(systemName: audioManager.isStreaming ? "waveform" : "mic.fill")
+            Image(systemName: audioManager.isStreaming ? "mic.circle.fill" : "mic.circle")
         }
         .menuBarExtraStyle(.window)
     }

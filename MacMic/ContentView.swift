@@ -29,7 +29,7 @@ struct ContentView: View {
                           : Color.secondary.opacity(0.08))
                     .frame(width: 38, height: 38)
 
-                Image(systemName: audioManager.isStreaming ? "waveform" : "mic.fill")
+                Image(systemName: audioManager.isStreaming ? "mic.circle.fill" : "mic.circle")
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundStyle(audioManager.isStreaming ? .green : .secondary)
                     .symbolEffect(.variableColor.iterative, isActive: audioManager.isStreaming)
