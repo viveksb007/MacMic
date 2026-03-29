@@ -12,11 +12,11 @@ A macOS menu bar app that streams audio in real-time from any microphone to any 
   <img src="assets/running_state.png" alt="Streaming" width="300">
 </p>
 
+
+
 ### Demo
 
-<p align="center">
-  <video src="assets/demo_trimmed.mov" width="340" autoplay loop muted></video>
-</p>
+https://github.com/user-attachments/assets/a7dcdbf8-5811-4feb-be33-fa07375f086b
 
 ## Features
 
@@ -31,6 +31,10 @@ A macOS menu bar app that streams audio in real-time from any microphone to any 
 MacMic creates a private [aggregate device](https://developer.apple.com/documentation/coreaudio/using-voice-processing) combining the selected input and output devices, then routes audio through a HAL Output audio unit with a render callback. This is the same approach used by professional audio software to handle cross-device routing on macOS.
 
 ## Install
+
+
+https://github.com/user-attachments/assets/0893a95d-ed59-44f0-9b86-13b30feb6767
+
 
 ### Homebrew
 
