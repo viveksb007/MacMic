@@ -51,6 +51,10 @@ Then press `Cmd+R` in Xcode.
 - Selecting the same device for both input and output (e.g., MacBook mic + MacBook speakers) will cause audio feedback. Use headphones or an external speaker.
 - Bluetooth devices switch from A2DP to HFP/SCO profile when their microphone is activated, which reduces output audio quality. This is a Bluetooth protocol limitation.
 
+## Backstory
+
+Years ago, I built [PhoneMic](https://play.google.com/store/apps/details?id=com.viveksb007.phonemic) — an Android app that does the same thing: stream microphone audio to a speaker. I wanted the same functionality on macOS, but this time on an entirely different tech stack (Swift, CoreAudio, SwiftUI) that I had no prior experience with. This app was built almost entirely with the help of AI — from the low-level aggregate device setup to the SwiftUI menu bar interface.
+
 ## License
 
 MIT
